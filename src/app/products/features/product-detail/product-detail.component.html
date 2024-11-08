@@ -1,0 +1,64 @@
+@if (productDetailState.status() === "loading") {
+  <app-spinner/>
+} @else {
+  <section class="w-7/12 mx-auto bg-white-200 antialiased rounded-2xl">
+    
+    <div class="p-8 relative">
+      <a routerLink="/" class="absolute top-4 right-4">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8">
+          <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+        </svg>
+      </a>
+      <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
+        <div class="mx-auto relative text-white-200 ">
+          <img
+            class="w-[18rem] h-[19rem] rounded-3xl bg- opacity-75"
+            [src]="productDetailState.product()?.images"
+            [alt]="productDetailState.product()?.title"
+          />
+          <p class="absolute inset-y-44 left-10 font-semibold text-2xl">{{ productDetailState.product()?.category?.name }}</p>
+          <p class="absolute inset-y-56 left-10 text-3xl font-normal">{{ productDetailState.product()?.price }}$</p>
+        </div>
+
+        <div class="mt-6 sm:mt-8 lg:mt-0">
+          <br>
+          <h1
+            class="text-xl font-semibold text-iconorange-200 sm:text-2xl dark:text-white"
+          >
+            {{ productDetailState.product()?.title }}
+          </h1>
+          <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
+          </div>
+
+          <p class="my-3 font-extralight text-2xl text-slate-600"> Descripción</p>
+
+          <p class=" text-gray-400">
+            {{ productDetailState.product()?.description }}
+          </p>
+          
+        </div>
+      </div>
+
+      <div class="w-full flex justify-end gap-4 ">
+        <a
+          class="text-white mt-4 w-48 font-semibold bg-white-200 border-2 border-slate-400 hover:bg-white-100 focus:ring-4 focus:ring-primary-300 rounded-2xl text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 flex items-center justify-center"
+          routerLink="/" 
+        >
+          Cancelar
+        </a>
+
+        <button
+          class="text-white mt-4 w-48 h-14 text-white-200 font-semibold bg-softgreen-100 hover:bg-softgreen-200 focus:ring-4 focus:ring-primary-300 rounded-2xl text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 flex items-center justify-center"
+          (click)="addToBag()"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+            <path fill-rule="evenodd" d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 0 0 4.25 22.5h15.5a1.875 1.875 0 0 0 1.865-2.071l-1.263-12a1.875 1.875 0 0 0-1.865-1.679H16.5V6a4.5 4.5 0 1 0-9 0ZM12 3a3 3 0 0 0-3 3v.75h6V6a3 3 0 0 0-3-3Zm-3 8.25a3 3 0 1 0 6 0v-.75a.75.75 0 0 1 1.5 0v.75a4.5 4.5 0 1 1-9 0v-.75a.75.75 0 0 1 1.5 0v.75Z" clip-rule="evenodd" />
+          </svg>
+        
+          Agregar a la bolsa
+        </button>
+      </div>
+
+    </div>
+  </section>
+}

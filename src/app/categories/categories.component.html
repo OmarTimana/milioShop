@@ -1,0 +1,28 @@
+
+
+@if (categoriesState.state.status() === 'loading') {
+    
+    <div class="w-full">
+        <app-spinner />
+    </div>
+
+}@else {
+    <div class="flex flex-col gap-4">
+        <div class="flex justify-between text-md font-semibold p-2">
+            <div>Id</div>
+            <div>Name</div>
+            <div>Updated At</div>
+        </div>
+
+        @for (categories of categoriesState.state().categories; track categories) {
+            
+            <app-categories-table [categories]="categories"/>
+            
+        }
+
+    </div>
+        }
+
+       
+
+    

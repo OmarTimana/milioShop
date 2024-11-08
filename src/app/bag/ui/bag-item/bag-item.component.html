@@ -1,0 +1,177 @@
+<div class="w-full h-20 flex flex-row bg-white-200 rounded-2xl">
+
+  <div class="w-2/3 flex">
+    <div class="p-2 m-auto">
+      <img class="rounded-xl w-20 h-16" [src]="productBagItem().product.images">
+    </div>
+    <div class="flex flex-col my-auto">
+        <div>
+            <a
+            href="#"class="text-base font-medium line-clamp-1">{{ productBagItem().product.title }}</a>
+        </div>
+        <div>
+          <p class="text-base font-bold text-gray-900 dark:text-white">
+            {{ productBagItem().product.price | currency }}
+          </p>
+        </div>
+    </div>
+
+  </div>
+
+    <div class="flex items-center mt-3">
+      <button
+        type="button"
+        id="decrement-button"
+        data-input-counter-decrement="counter-input"
+        class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border hover:bg-white-100 active:bg-white-200"
+        (click)="onDecrease.emit(productBagItem())"
+      >
+        <svg
+          class="h-2.5 w-2.5 text-gray-900"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 18 2"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 1h16"
+          />
+        </svg>
+      </button>
+      <input
+        type="text"
+        id="counter-input"
+        data-input-counter
+        class="w-10 shrink-0 border-0 bg-transparent text-center "
+        placeholder=""
+        [value]="productBagItem().quantity"
+        disabled
+        required
+      />
+      
+      <button
+        type="button"
+        id="increment-button"
+        data-input-counter-increment="counter-input"
+        class="inline-flex h-5 w-5 shrink-0 font-bold items-center justify-center rounded-md text-white-200 bg-iconorange-200 hover:bg-iconorange-100 active:bg-iconorange-200"
+        (click)="onIncrease.emit(productBagItem())"
+      >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+        <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+      </svg>
+                
+      
+      </button>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div
+  class="rounded-2xl bg-white-200"
+>
+  <div
+    class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0"
+  >
+    <a href="#" class="shrink-0 md:order-1">
+      <img
+        class="h-10 w-10 rounded-xl"
+        [src]="productBagItem().product.images"
+        alt="imac image"
+      />
+    </a>
+
+    <label for="counter-input" class="sr-only">Choose quantity:</label>
+    <div class="flex items-center justify-between md:order-3 md:justify-end">
+      <div class="flex items-center">
+        <button
+          type="button"
+          id="decrement-button"
+          data-input-counter-decrement="counter-input"
+          class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+          (click)="onDecrease.emit(productBagItem())"
+        >
+          <svg
+            class="h-2.5 w-2.5 text-gray-900 dark:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 18 2"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M1 1h16"
+            />
+          </svg>
+        </button>
+        <input
+          type="text"
+          id="counter-input"
+          data-input-counter
+          class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white"
+          placeholder=""
+          [value]="productBagItem().quantity"
+          disabled
+          required
+        />
+        <button
+          type="button"
+          id="increment-button"
+          data-input-counter-increment="counter-input"
+          class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+          (click)="onIncrease.emit(productBagItem())"
+        >
+          <svg
+            class="h-2.5 w-2.5 text-gray-900 dark:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 18 18"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 1v16M1 9h16"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div class="text-end md:order-4 md:w-32">
+        <p class="text-base font-bold text-gray-900 dark:text-white">
+          {{ productBagItem().product.price | currency }}
+        </p>
+      </div>
+    </div>
+
+    <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
+      <a
+        href="#"
+        class="text-base font-medium line-clamp-1"
+        >{{ productBagItem().product.title }}</a
+      >
+
+
+    </div>
+  </div>
+</div> -->

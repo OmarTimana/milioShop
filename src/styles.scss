@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #F5F5F5;
+  @apply font-DMsans;
+}
+
+@layer components {
+  .hoverNav {
+      @apply hover:border-softgreen-100 hover:border-b-2 hover:pb-2 hover:text-gray-600
+  }
+}

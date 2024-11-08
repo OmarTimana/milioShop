@@ -1,0 +1,99 @@
+<a class="w-[35vw] xs:w-52 h-[267px] flex flex-col justify-evenly p-5 bg-white-100 rounded-3xl shadow-lg drop-shadow-lg" [routerLink]="['/product', product().id]">
+  <img [src]="product().images" alt={{product().title}} class="w-44 h-44 rounded-2xl mx-auto">
+
+  <div class="flex flex-row justify-between px-2 pt-5">
+      <div class="flex flex-col">
+          <p class="text-md font-bold line-clamp-1">{{product().title}}</p>
+          <p class="text-md font-semibold text-gray-400 -mt-1">${{product().price}}</p>
+      </div>
+      <div class="flex flex-col justify-center mt-1.5">
+          <button>
+              <svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.67818 9.72244C4.96087 9.03998 5.37521 8.41988 5.89755 7.89755C6.41988 7.37521 7.03998 6.96087 7.72244 6.67818C8.4049 6.3955 9.13636 6.25 9.87505 6.25C10.6137 6.25 11.3452 6.3955 12.0277 6.67818C12.7101 6.96087 13.3302 7.37521 13.8525 7.89755L15.5 9.54505L17.1475 7.89755C18.2024 6.84265 19.6332 6.25001 21.125 6.25001C22.6169 6.25001 24.0476 6.84265 25.1025 7.89755C26.1574 8.95245 26.7501 10.3832 26.7501 11.875C26.7501 13.3669 26.1574 14.7977 25.1025 15.8525L15.5 25.455L5.89755 15.8525C5.37521 15.3302 4.96087 14.7101 4.67818 14.0277C4.3955 13.3452 4.25 12.6137 4.25 11.875C4.25 11.1364 4.3955 10.4049 4.67818 9.72244Z" stroke="#F26F3F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+          </button>
+      </div>
+  </div>  
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <a [routerLink]="['/product', product().id]">
+  <div
+    class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+  >
+    <picture>
+      <img
+        class="rounded-t-lg h-60 w-full object-contain object-center"
+        [src]="product().images"
+        alt=""
+      />
+    </picture>
+    <div class="p-5">
+      <a href="#">
+        <h5
+          class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white line-clamp-1"
+        >
+          {{ product().title }}
+        </h5>
+      </a>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-3">
+        {{ product().description }}
+      </p>
+      <div class="flex justify-end my-4">
+        <button
+          class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800"
+          (click)="add($event)"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-bag"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+            <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+            <path d="M17 17h-11v-14h-2" />
+            <path d="M6 5l14 1l-1 7h-13" />
+          </svg>
+
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+  </div>
+</a> -->

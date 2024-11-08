@@ -1,0 +1,92 @@
+<div class=" xs: w-full">
+  <section class="max-w-1/2 mb-4">
+      <!-- renderizado busqueda productos -->
+      <h1 class="font-bold text-4xl text-center font-sans">¿Qué es lo que estás buscando?</h1>
+  
+      <div class="relative flex flex-row w-8/12 h-[70px] mx-auto mt-4">
+          <input class="rounded-xl bg-white-100 w-full py-4 pl-4 pr-10 focus:outline-none" type="text" placeholder="Introduce una palabra clave...">
+          <button type="button" class="absolute inset-y-0 right-4 flex items-center justify-center">
+              <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21.25 20.75L16.5 16M19 9.75C19 10.8991 18.7737 12.0369 18.3339 13.0985C17.8942 14.1601 17.2497 15.1247 16.4372 15.9372C15.6247 16.7497 14.6601 17.3942 13.5985 17.8339C12.5369 18.2737 11.3991 18.5 10.25 18.5C9.10093 18.5 7.96312 18.2737 6.90152 17.8339C5.83992 17.3942 4.87533 16.7497 4.06282 15.9372C3.2503 15.1247 2.60578 14.1601 2.16605 13.0985C1.72633 12.0369 1.5 10.8991 1.5 9.75C1.5 7.42936 2.42187 5.20376 4.06282 3.56282C5.70376 1.92187 7.92936 1 10.25 1C12.5706 1 14.7962 1.92187 16.4372 3.56282C18.0781 5.20376 19 7.42936 19 9.75Z" stroke="#F26F3F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+                  
+          </button>
+      </div>
+  </section>
+  
+  <!-- renderizado categorias -->
+  <section class="flex flex-col mt-12 gap-4">
+      <p class="text-xl font-semibold">Categorías</p>
+      <div class="w-full flex flex-row gap-3 overflow-hidden mx-auto">
+
+          @if (categoriesState.state.status() === 'loading') {
+              
+              <div class="w-full">
+                  <app-spinner />
+              </div>
+
+          }@else {
+              @for (categories of categoriesState.state().categories; track categories) {
+                  <app-category-card [category]="categories" (categorySelected)="setCategory($event)" />
+              }
+              
+          }
+         
+      </div>
+  
+      
+  </section>
+  
+  <br>
+
+  <!-- renderizado lista de productos -->
+  <section class="flex flex-col">
+
+      <!-- componente submenu -->
+      <div class="flex flex-row text-xl font-semibold mt-0.5 mb-[2.8rem] gap-12">
+          <button class="flex flex-row">
+
+              <p>Top Ventas</p>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29303 7.29259C5.48056 7.10512 5.73487 6.99981 6.00003 6.99981C6.26519 6.99981 6.5195 7.10512 6.70703 7.29259L10 10.5856L13.293 7.29259C13.3853 7.19708 13.4956 7.1209 13.6176 7.06849C13.7396 7.01608 13.8709 6.9885 14.0036 6.98734C14.1364 6.98619 14.2681 7.01149 14.391 7.06177C14.5139 7.11205 14.6255 7.18631 14.7194 7.2802C14.8133 7.37409 14.8876 7.48574 14.9379 7.60864C14.9881 7.73154 15.0134 7.86322 15.0123 7.99599C15.0111 8.12877 14.9835 8.25999 14.9311 8.382C14.8787 8.504 14.8025 8.61435 14.707 8.70659L10.707 12.7066C10.5195 12.8941 10.2652 12.9994 10 12.9994C9.73487 12.9994 9.48056 12.8941 9.29303 12.7066L5.29303 8.70659C5.10556 8.51907 5.00024 8.26476 5.00024 7.99959C5.00024 7.73443 5.10556 7.48012 5.29303 7.29259Z" fill="#F26F3F"/>
+              </svg>
+                  
+          </button>
+          
+
+          <button disabled class="flex flex-row disabled:text-[#A9A9A9]">
+
+            Explorar
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.29308 14.7072C7.10561 14.5197 7.00029 14.2654 7.00029 14.0002C7.00029 13.735 7.10561 13.4807 7.29308 13.2932L10.5861 10.0002L7.29308 6.70721C7.19757 6.61497 7.12139 6.50462 7.06898 6.38262C7.01657 6.26061 6.98898 6.12939 6.98783 5.99661C6.98668 5.86384 7.01198 5.73216 7.06226 5.60926C7.11254 5.48636 7.18679 5.37471 7.28069 5.28082C7.37458 5.18693 7.48623 5.11267 7.60913 5.06239C7.73202 5.01211 7.8637 4.98681 7.99648 4.98796C8.12926 4.98912 8.26048 5.0167 8.38249 5.06911C8.50449 5.12152 8.61483 5.1977 8.70708 5.29321L12.7071 9.29321C12.8946 9.48074 12.9999 9.73505 12.9999 10.0002C12.9999 10.2654 12.8946 10.5197 12.7071 10.7072L8.70708 14.7072C8.51955 14.8947 8.26525 15 8.00008 15C7.73492 15 7.48061 14.8947 7.29308 14.7072Z" fill="#F26F3F"/>
+            </svg>
+                
+                  
+          </button>
+          
+      </div>
+      <!-- --------------------------------------- -->
+      
+      <div class="w-full flex flex-row flex-wrap gap-x-2 gap-y-28 justify-between">
+          
+          @if (productsState.state.status() === 'loading') {
+
+              <div class="w-full">
+                  <app-spinner />
+              </div>
+              
+
+          }@else {
+              @for (product of productsState.state().products; track product) {
+              
+                  <app-product-card [product]="product" />
+              
+              }
+          }
+
+      </div>
+
+  </section>
+  
+  
+</div>

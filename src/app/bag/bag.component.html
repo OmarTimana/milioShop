@@ -1,0 +1,127 @@
+
+
+<section class="bg-[#F9F9F9] rounded-3xl w-1/2 mx-auto pt-6 flex flex-col">
+
+  <div class=" flex justify-between mx-8">
+    <a href="#">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+        <path fill-rule="evenodd" d="M11.03 3.97a.75.75 0 0 1 0 1.06l-6.22 6.22H21a.75.75 0 0 1 0 1.5H4.81l6.22 6.22a.75.75 0 1 1-1.06 1.06l-7.5-7.5a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
+      </svg>
+    </a>
+    
+    <a href="#">
+      <svg width="15" height="15" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M25.4985 1L1.49847 24.9998" stroke="#6A6A6A" stroke-width="2" stroke-linecap="round"/>
+        <path d="M1.49847 1.00019L25.4985 25" stroke="#6A6A6A" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </a>
+      
+  
+  </div>
+
+      <div class="flex justify-center  items-center gap-4 mb-6">
+
+
+        
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+        </svg>
+
+        <h2 class="text-xl font-semibold text-gray-800 dark:text-white sm:text-2xl">
+          Mi Bolsa
+        </h2>
+
+      </div>
+      
+  
+      <div class="h-[16rem] flex flex-row px-4 gap-6 ">
+
+        <div class="mx-auto w-1/2 flex-none lg:max-w-2xl xl:max-w-4xl overflow-auto">
+
+          <div class="space-y-3">
+            @for (bagItem of state.products(); track bagItem.product.id) {
+              <app-bag-item
+                class="block"
+                [productBagItem]="bagItem"
+                (onRemove)="onRemove($event)"
+                (onDecrease)="onDecrease($event)"
+                (onIncrease)="onIncrease($event)"
+              />
+            }
+          </div>
+
+        </div>
+  
+        <div class="w-1/2 mx-auto">
+          <div
+            class="w-full space-y-4 rounded-lg "
+          >
+            <p>
+              Informacion del pedido
+            </p>
+  
+            <div class="space-y-4">
+              <div class="space-y-2">
+                <dl class="flex items-center justify-between gap-4">
+                  <dt
+                    class="text-base font-normal text-gray-500 dark:text-gray-400"
+                  >
+                    Productos ({{ state.products().length }}):
+                  </dt>
+                  <dd class="text-base font-medium text-gray-900 dark:text-white">
+                    {{ state.price() | currency }}
+                  </dd>
+                </dl>
+  
+                <dl class="flex items-center justify-between gap-4">
+                  <dt
+                    class="text-base font-normal text-gray-500 dark:text-gray-400"
+                  >
+                    Impuestos:
+                  </dt>
+                  <dd class="text-base font-medium text-red-500">-$0.00</dd>
+                </dl>
+              </div>
+  
+              <dl
+                class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700"
+              >
+                <dt class="text-base font-bold text-gray-600 dark:text-white">
+                  Total
+                </dt>
+                <dd class="text-base font-bold text-gray-600 dark:text-white">
+                  {{ state.price() | currency }}
+                </dd>
+              </dl>
+            </div>
+  
+            <a
+              href="#"
+              class="flex w-1/2 h-12 text-white-200 items-center mx-auto justify-center rounded-2xl bg-softgreen-100 hover:bg-softgreen-200 active:bg-softgreen-100"
+              >Comprar</a
+            >
+  
+          </div>
+
+          
+
+        </div>
+        
+      </div>
+
+      <div class="w-1/2 mt-3 mb-6 ml-10  text-justify " >
+        <a
+            href="#"
+            title=""
+            class="inline-flex items-center gap-2 text-sm font-medium text-primary-700 hover:underline dark:text-primary-300 active:text-softgreen-100"
+          >
+          Agregar más productos
+            <svg width="20" height="20" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9395 22.0608C10.6583 21.7795 10.5003 21.3981 10.5003 21.0003C10.5003 20.6026 10.6583 20.2211 10.9395 19.9398L15.879 15.0003L10.9395 10.0608C10.7962 9.92245 10.682 9.75693 10.6033 9.57393C10.5247 9.39092 10.4834 9.19409 10.4816 8.99492C10.4799 8.79575 10.5178 8.59823 10.5933 8.41389C10.6687 8.22954 10.7801 8.06207 10.9209 7.92123C11.0617 7.78039 11.2292 7.66901 11.4136 7.59359C11.5979 7.51817 11.7954 7.48021 11.9946 7.48194C12.1938 7.48367 12.3906 7.52505 12.5736 7.60367C12.7566 7.68228 12.9221 7.79655 13.0605 7.93982L19.0605 13.9398C19.3417 14.2211 19.4997 14.6026 19.4997 15.0003C19.4997 15.3981 19.3417 15.7795 19.0605 16.0608L13.0605 22.0608C12.7792 22.342 12.3977 22.5 12 22.5C11.6023 22.5 11.2208 22.342 10.9395 22.0608Z" fill="#222324"/>
+            </svg>
+            
+          </a>
+      </div>
+
+  </section>
+  
