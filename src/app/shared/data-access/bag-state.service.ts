@@ -2,7 +2,7 @@ import { Injectable, Signal, inject } from '@angular/core';
 import { ProductItemBag } from '../interfaces/product.interface';
 import { signalSlice } from 'ngxtension/signal-slice';
 import { StorageService } from './storage.service';
-import { Observable, map } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 
 interface State {
   products: ProductItemBag[];
@@ -92,36 +92,5 @@ export class BagStateService {
     });
 
     return { products };
-  }
-}
-
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { ProductItemBag } from '../interfaces/product.interface';
-
-@Injectable({
-  providedIn: 'root',
-})
-export class StorageService {
-  // Carga los productos desde el almacenamiento local
-  loadProducts(): Observable<ProductItemBag[]> {
-    const rawProducts = localStorage.getItem('products');
-    return of(rawProducts ? JSON.parse(rawProducts) : []);
-  }
-
-  // Guarda los productos en el almacenamiento local
-  saveProducts(products: ProductItemBag[]): void {
-    localStorage.setItem('products', JSON.stringify(products));
-  }
-
-  // Carga los productos favoritos desde el almacenamiento local
-  loadFavorites(): Observable<ProductItemBag[]> {
-    const rawFavorites = localStorage.getItem('favorites');
-    return of(rawFavorites ? JSON.parse(rawFavorites) : []);
-  }
-
-  // Guarda los productos favoritos en el almacenamiento local
-  saveFavorites(favorites: ProductItemBag[]): void {
-    localStorage.setItem('favorites', JSON.stringify(favorites));
   }
 }
