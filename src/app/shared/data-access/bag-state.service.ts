@@ -20,10 +20,12 @@ export class BagStateService {
     loaded: false,
   };
 
+  // Carga los productos desde el almacenamiento local
   loadProducts$ = this._storageService
     .loadProducts()
     .pipe(map((products) => ({ products, loaded: true })));
 
+  // Define el estado de la bolsa utilizando signalSlice
   state = signalSlice({
     initialState: this.initialState,
     sources: [this.loadProducts$],
@@ -54,6 +56,7 @@ export class BagStateService {
     }),
   });
 
+  // Método privado para agregar un producto a la bolsa
   private add(state: Signal<State>, product: ProductItemBag) {
     const isInBag = state().products.find(
       (productInBag) => productInBag.product.id === product.product.id,
@@ -71,12 +74,14 @@ export class BagStateService {
     };
   }
 
+  // Método privado para eliminar un producto de la bolsa
   private remove(state: Signal<State>, id: number) {
     return {
       products: state().products.filter((product) => product.product.id !== id),
     };
   }
 
+  // Método privado para actualizar la cantidad de un producto en la bolsa
   private update(state: Signal<State>, product: ProductItemBag) {
     const products = state().products.map((productInBag) => {
       if (productInBag.product.id === product.product.id) {
@@ -87,5 +92,36 @@ export class BagStateService {
     });
 
     return { products };
+  }
+}
+
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { ProductItemBag } from '../interfaces/product.interface';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class StorageService {
+  // Carga los productos desde el almacenamiento local
+  loadProducts(): Observable<ProductItemBag[]> {
+    const rawProducts = localStorage.getItem('products');
+    return of(rawProducts ? JSON.parse(rawProducts) : []);
+  }
+
+  // Guarda los productos en el almacenamiento local
+  saveProducts(products: ProductItemBag[]): void {
+    localStorage.setItem('products', JSON.stringify(products));
+  }
+
+  // Carga los productos favoritos desde el almacenamiento local
+  loadFavorites(): Observable<ProductItemBag[]> {
+    const rawFavorites = localStorage.getItem('favorites');
+    return of(rawFavorites ? JSON.parse(rawFavorites) : []);
+  }
+
+  // Guarda los productos favoritos en el almacenamiento local
+  saveFavorites(favorites: ProductItemBag[]): void {
+    localStorage.setItem('favorites', JSON.stringify(favorites));
   }
 }

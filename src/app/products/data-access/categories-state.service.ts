@@ -22,7 +22,7 @@ export class CategoriesStateService {
   state = signalSlice({
     initialState: this.initialState,
     sources: [
-        this.categoriesService.getCategories().pipe(map(categories => ({ categories, status: 'success' as const }))),
+      this.categoriesService.getCategories().pipe(map(categories => ({ categories, status: 'success' as const }))),
     ],
   });
 }
